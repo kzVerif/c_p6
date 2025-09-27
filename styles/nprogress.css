@@ -1,0 +1,36 @@
+/* ให้ bar อยู่บนสุดเสมอ */
+#nprogress .bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 3px;
+  background: #29d !important;
+  z-index: 9999; /* ให้ทับทุก element */
+}
+
+/* spinner (ปิดได้ถ้าไม่อยากใช้) */
+#nprogress .spinner {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 9999;
+}
+
+#nprogress .spinner-icon {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+  border: solid 2px transparent;
+  border-top-color: #29d;
+  border-left-color: #29d;
+  border-radius: 50%;
+  animation: nprogress-spinner 400ms linear infinite;
+}
+
+/* animation ของ spinner */
+@keyframes nprogress-spinner {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
