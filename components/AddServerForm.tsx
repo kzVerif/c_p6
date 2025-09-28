@@ -24,6 +24,8 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CreateApplication } from "@/utils/Coolify";
+import { toast } from "react-toastify";
 
 // ✅ สร้าง Schema
 const formSchema = z.object({
@@ -50,8 +52,19 @@ export default function AddServerForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log("Form Submitted:", values);
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const res = await CreateApplication(values);
+
+      if (res?.code === 400) {
+        toast.error(res.message)
+      } else {
+        toast.success("สร้าง Server สำเร็จ")
+        form.reset(); // ล้างฟอร์มถ้าสำเร็จ
+      }
+    } catch (error) {
+      toast.error("สร้าง Server ไม่สำเร็จ")
+    }
   }
 
   return (
