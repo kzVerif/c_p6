@@ -77,10 +77,6 @@ export default function Page() {
               <CardContent className="space-y-1 text-gray-700">
                 <p className="font-medium">วันที่หมดอายุ</p>
                 <p className="text-sm">{server.expire}</p>
-                {/* <br />
-                <p className="font-medium">Database Info</p>
-                <p className="text-sm">{server.expire}</p>
-                <ConnectionInfo/> */}
               </CardContent>
 
               {/* Footer */}
