@@ -7,8 +7,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { GetAllApplications } from "@/utils/Coolify";
+import ServerButton from "@/components/ServerButton";
+import Link from "next/link";
 
 interface Data {
   id: number;
@@ -94,11 +95,9 @@ interface Data {
   http_basic_auth_password: string;
 }
 
-
 export default async function Page() {
-  const servers = await GetAllApplications()
-  console.log(servers);
-  
+  const servers = await GetAllApplications();
+  // console.log(servers);
 
   return (
     <div className="flex flex-col items-center min-h-screen container space-y-6 py-10">
@@ -118,9 +117,7 @@ export default async function Page() {
                   <CardTitle className="text-lg font-bold">
                     {server.name}
                   </CardTitle>
-                  <p className="text-sm text-gray-500">
-                    {server.description}
-                  </p>
+                  <p className="text-sm text-gray-500">{server.description}</p>
                 </div>
                 <Badge
                   variant={
@@ -135,38 +132,29 @@ export default async function Page() {
               </CardHeader>
 
               {/* Content */}
-<<<<<<< HEAD
               <CardContent className="space-y-1 text-gray-700">
                 <p className="font-medium">วันที่หมดอายุ</p>
-                <p className="text-sm">{server.expire}</p>
-=======
-              <CardContent className="space-y-2 text-gray-700">
-                <p>
-                  <span className="font-medium">Domain:</span>{" "}
-                  <a
-                    href={server.fqdn}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:underline"
-                  >
-                    {server.fqdn}
-                  </a>
-                </p>
-                <p>
-                  <span className="font-medium">Repository:</span>{" "}
-                  {server.git_repository}
-                </p>
-                <p className="text-sm text-gray-500">
-                  อัปเดตล่าสุด: {new Date(server.updated_at).toLocaleString()}
-                </p>
->>>>>>> 94be8996ef47df6a1c4eac7afa37c910f4335596
+                <p className="text-sm">12 09 2569</p>
+              </CardContent>
+              <CardContent className="space-y-1 text-gray-700">
+                <p className="font-medium">Repository</p>
+                <p className="text-sm">{server.git_repository}</p>
+              </CardContent>
+              <CardContent className="space-y-1 text-gray-700">
+                <p className="font-medium">Domain url</p>
+                <Link
+                  href={server.fqdn}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-blue-600 hover:underline"
+                >
+                  {server.fqdn}
+                </Link>
               </CardContent>
 
               {/* Footer */}
-              <CardFooter className="flex flex-wrap justify-end gap-2">
-                <Button variant="secondary">Restart</Button>
-                <Button variant="outline">Stop</Button>
-                <Button variant="destructive">Delete</Button>
+              <CardFooter className="flex-col flex-wrap justify-end gap-2">
+                <ServerButton uuid={server.uuid} />
               </CardFooter>
             </Card>
           ))}

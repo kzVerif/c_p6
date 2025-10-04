@@ -52,18 +52,18 @@ export default function AddServerForm() {
     },
   });
 
-    async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       const res = await CreateApplication(values);
 
       if (res?.code === 400) {
-        toast.error(res.message)
+        toast.error(res.message);
       } else {
-        toast.success("สร้าง Server สำเร็จ")
+        toast.success("สร้าง Server สำเร็จ");
         form.reset(); // ล้างฟอร์มถ้าสำเร็จ
       }
     } catch (error) {
-      toast.error("สร้าง Server ไม่สำเร็จ")
+      toast.error("สร้าง Server ไม่สำเร็จ");
     }
   }
 
@@ -74,10 +74,7 @@ export default function AddServerForm() {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-6"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             {/* Server Name */}
             <FormField
               control={form.control}
@@ -88,9 +85,7 @@ export default function AddServerForm() {
                   <FormControl>
                     <Input placeholder="K-Cloud Server" {...field} />
                   </FormControl>
-                  <FormDescription>
-                    ความยาวไม่เกิน 30 ตัวอักษร
-                  </FormDescription>
+                  <FormDescription>ความยาวไม่เกิน 30 ตัวอักษร</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -111,9 +106,7 @@ export default function AddServerForm() {
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription>
-                    ความยาวไม่เกิน 200 ตัวอักษร
-                  </FormDescription>
+                  <FormDescription>ความยาวไม่เกิน 200 ตัวอักษร</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -144,8 +137,13 @@ export default function AddServerForm() {
               name="package"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel className="font-semibold">Package Server</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormLabel className="font-semibold">
+                    Package Server
+                  </FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <FormControl>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="เลือก Package" />
@@ -153,13 +151,16 @@ export default function AddServerForm() {
                     </FormControl>
                     <SelectContent>
                       <SelectItem value="basic">
-                        <span className="font-medium">Basic</span> – 1 CPU / 1GB RAM · 50 บาท/เดือน
+                        <span className="font-medium">Basic</span> – 1 CPU / 1GB
+                        RAM · 50 บาท/เดือน
                       </SelectItem>
                       <SelectItem value="standard">
-                        <span className="font-medium">Standard</span> – 2 CPU / 4GB RAM · 80 บาท/เดือน
+                        <span className="font-medium">Standard</span> – 2 CPU /
+                        4GB RAM · 80 บาท/เดือน
                       </SelectItem>
                       <SelectItem value="pro">
-                        <span className="font-medium">Pro</span> – 4 CPU / 8GB RAM · 500 บาท/เดือน
+                        <span className="font-medium">Pro</span> – 4 CPU / 8GB
+                        RAM · 500 บาท/เดือน
                       </SelectItem>
                     </SelectContent>
                   </Select>

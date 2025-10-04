@@ -51,7 +51,7 @@ export default function Navbar() {
           {/* Action Buttons */}
           {isLogin && (
             <div className="flex gap-3">
-              <Link href={"/panel/manange-server"}>
+              <Link href={"/panel/manage-server"}>
                 <Button variant="outline">จัดการ Server</Button>
               </Link>
               <Link href={"/panel/add-server"}>
@@ -112,7 +112,7 @@ export default function Navbar() {
         <div className="md:hidden bg-white shadow-md border-t p-4 space-y-4">
           {isLogin && (
             <div className="flex flex-col gap-2">
-              <Link href={"/panel/manange-server"}>
+              <Link href={"/panel/manage-server"}>
                 <Button variant="outline" className="w-full">
                   จัดการ Server
                 </Button>

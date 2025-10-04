@@ -23,12 +23,12 @@ export default function Home() {
             ใช้พลังของ <span className="text-purple-400">Coolify</span>.
           </p>
           <div>
-            <Link href="/panel">
+            <Link href="/panel/add-server">
               <Button
                 size="lg"
                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-6 text-lg shadow-lg rounded-xl transition-transform transform hover:scale-105"
               >
-                🚀 เริ่มต้นใช้งานฟรี
+                🚀 เริ่มต้นใช้งาน
               </Button>
             </Link>
           </div>
