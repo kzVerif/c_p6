@@ -1,11 +1,13 @@
 import { revalidatePath } from "next/cache";
+import { NextResponse } from "next/server";
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { uuid: string; env_uuid: string } }
+  context: { params: { uuid: string; env_uuid: string } }
 ) {
   try {
-    const { uuid, env_uuid } = await params; // ❌ ไม่ต้อง await
+    // ✅ เข้าถึง params แบบนี้เท่านั้น
+    const { uuid, env_uuid } = context.params;
 
     const url = `${process.env.COOLIFY_URL}/api/v1/applications/${uuid}/envs/${env_uuid}`;
 
@@ -13,11 +15,10 @@ export async function DELETE(
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer 1|JN2WaTCFf1RGA8ZuHawXfYep3Y4k112J88SMHI5T0018f714", // ต้องมี token
+        Authorization: `Bearer ${process.env.COOLIFY_API_KEY}`, // แนะนำให้ย้ายไป .env
       },
     });
 
-    // DELETE บาง API อาจไม่ส่ง body (204 No Content)
     let data: any = null;
     try {
       data = await response.json();
@@ -26,20 +27,20 @@ export async function DELETE(
     }
 
     if (!response.ok) {
-      return Response.json(
+      return NextResponse.json(
         { error: "Delete .Env Failed", detail: data },
         { status: response.status }
       );
     }
 
-    revalidatePath(`/panel/manage-server/${uuid}`)
-    return Response.json(
+    revalidatePath(`/panel/manage-server/${uuid}`);
+    return NextResponse.json(
       { message: "Delete Success", detail: data },
       { status: 200 }
     );
   } catch (error: any) {
     console.error("Delete Env Error:", error);
-    return Response.json(
+    return NextResponse.json(
       { error: "Internal Server Error", detail: error.message },
       { status: 500 }
     );
