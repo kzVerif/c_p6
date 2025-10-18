@@ -7,7 +7,7 @@ export async function GET(
 ) {
   try {
     const { uuid } = await params; // ✅ ต้องดึงจาก params
-    const url = `https://coolify.mdgp-backend.store/applications/${uuid}/restart`;
+    const url = `${process.env.COOLIFY_URL}/applications/${uuid}/restart`;
 
     const response = await fetch(url, { method: "GET" });
 

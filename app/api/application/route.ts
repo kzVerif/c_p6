@@ -2,11 +2,11 @@
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        // console.log("🚀 You Send This Body:", body);
+        console.log("🚀 You Send This Body:", body);
 
         const token = process.env.COOLIFY_API_TOKEN || "1|JN2WaTCFf1RGA8ZuHawXfYep3Y4k112J88SMHI5T0018f714";
 
-        const response = await fetch("https://coolify.mdgp-backend.store/api/v1/applications/public", {
+        const response = await fetch(`${process.env.COOLIFY_URL}/api/v1/applications/public`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -33,7 +33,7 @@ export async function POST(req: Request) {
 
 export async function GET() {
   try {
-    const url = "https://coolify.mdgp-backend.store/api/v1/applications";
+    const url = `${process.env.COOLIFY_URL}/api/v1/applications`;
 
     const response = await fetch(url, {
       headers: {

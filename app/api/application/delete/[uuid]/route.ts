@@ -7,7 +7,7 @@ export async function DELETE(
 ) {
   try {
     const { uuid } = await params;
-    const url = `https://coolify.mdgp-backend.store/api/v1/applications/${uuid}`;
+    const url = `${process.env.COOLIFY_URL}/api/v1/applications/${uuid}`;
     const response = await fetch(url, {
       method: "DELETE",
       headers: {

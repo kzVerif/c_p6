@@ -1,3 +1,5 @@
+import { revalidatePath } from "next/cache";
+
 export async function DELETE(
   req: Request,
   { params }: { params: { uuid: string; env_uuid: string } }
@@ -5,7 +7,7 @@ export async function DELETE(
   try {
     const { uuid, env_uuid } = await params; // ❌ ไม่ต้อง await
 
-    const url = `https://coolify.mdgp-backend.store/api/v1/applications/${uuid}/envs/${env_uuid}`;
+    const url = `${process.env.COOLIFY_URL}/api/v1/applications/${uuid}/envs/${env_uuid}`;
 
     const response = await fetch(url, {
       method: "DELETE",
@@ -30,6 +32,7 @@ export async function DELETE(
       );
     }
 
+    revalidatePath(`/panel/manage-server/${uuid}`)
     return Response.json(
       { message: "Delete Success", detail: data },
       { status: 200 }

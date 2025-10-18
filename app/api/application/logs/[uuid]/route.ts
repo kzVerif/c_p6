@@ -4,7 +4,7 @@ export async function GET(
 ) {
   try {
     const { uuid } = await params; // ✅ ไม่ต้อง await
-    const url = `https://coolify.mdgp-backend.store/api/v1/applications/${uuid}/logs`;
+    const url = `${process.env.COOLIFY_URL}/api/v1/applications/${uuid}/logs`;
 
     const response = await fetch(url, {
       headers: {

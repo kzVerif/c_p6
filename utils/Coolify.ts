@@ -1,6 +1,6 @@
 "use server";
 
-import { ur } from "zod/v4/locales";
+import { da } from "zod/v4/locales";
 
 interface Application {
   serverName: string;
@@ -170,16 +170,31 @@ export async function GetLogServer(uuid: string) {
     throw error;
   }
 }
-
+interface envBody {
+  key: string;
+  value: string;
+}
 // ▶ CREATE
-export async function CreateEnv(uuid: string, body: object) {
+export async function CreateEnv(uuid: string, body: envBody) {
   try {
-    const url = `http://localhost:3000/api/application/env/${uuid}`;
+    const reqBody = {
+      uuid: uuid,
+      env: {
+        key: body.key,
+        value: body.value,
+        is_preview: true,
+        is_literal: true,
+      },
+    };
+
+    // console.log(JSON.stringify(reqBody));
+    
+    const url = `http://localhost:3000/api/application/env`;
 
     const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
+      body: JSON.stringify(reqBody),
     });
 
     if (!response.ok) {
@@ -196,7 +211,7 @@ export async function CreateEnv(uuid: string, body: object) {
 
 // ▶ READ (GET)
 export async function GetEnv(uuid: string) {
-  try {
+  try {    
     const url = `http://localhost:3000/api/application/env/${uuid}`;
 
     const response = await fetch(url, {
@@ -209,7 +224,9 @@ export async function GetEnv(uuid: string) {
       throw new Error(`GetEnv failed: ${response.status} - ${errorText}`);
     }
 
-    return await response.json();
+    const data = await response.json()
+
+    return data.result;
   } catch (error: any) {
     console.error("Error in GetEnv:", error.message);
     throw error;
@@ -254,10 +271,10 @@ export async function DeleteEnv(uuid: string, env_uuid: string) {
       throw new Error(`DeleteEnv failed: ${response.status} - ${errorText}`);
     }
 
-    return await response.json();
+    const l = await response.json()    
+    return l;
   } catch (error: any) {
     console.error("Error in DeleteEnv:", error.message);
     throw error;
   }
 }
-

@@ -154,14 +154,14 @@ export default function AddServerForm() {
                         <span className="font-medium">Basic</span> – 1 CPU / 1GB
                         RAM · 50 บาท/เดือน
                       </SelectItem>
-                      <SelectItem value="standard">
+                      {/* <SelectItem value="standard">
                         <span className="font-medium">Standard</span> – 2 CPU /
-                        4GB RAM · 80 บาท/เดือน
+                        4GB RAM · 100 บาท/เดือน
                       </SelectItem>
                       <SelectItem value="pro">
                         <span className="font-medium">Pro</span> – 4 CPU / 8GB
                         RAM · 500 บาท/เดือน
-                      </SelectItem>
+                      </SelectItem> */}
                     </SelectContent>
                   </Select>
                   <FormDescription className="text-gray-500">
