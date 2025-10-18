@@ -2,8 +2,7 @@
 
 // ▶ GET Environment Variables
 export async function GET(
-  req: Request,
-  { params }: { params: { uuid: string } }
+  req: Request, res: Response, {params} : {params: {uuid: string}}
 ) {
   try {
     const {uuid} = await params; // ✅ ไม่ต้อง await
@@ -41,8 +40,7 @@ export async function GET(
 
 // ▶ UPDATE Environment Variables
 export async function PUT(
-  req: Request,
-  { params }: { params: { uuid: string } }
+  req: Request, res: Response, {params} : {params: {uuid: string}}
 ) {
   try {
     const {uuid} = params; // ✅ ไม่ต้อง await

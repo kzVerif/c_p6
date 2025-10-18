@@ -2,8 +2,7 @@
 import { revalidatePath } from "next/cache";
 
 export async function DELETE(
-  req: Request,
-  { params }: { params: { uuid: string } }
+  req: Request, res: Response, {params} : {params: {uuid: string}}
 ) {
   try {
     const { uuid } = await params;

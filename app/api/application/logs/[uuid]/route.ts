@@ -1,6 +1,5 @@
 export async function GET(
-  req: Request,
-  { params }: { params: { uuid: string } }
+  req: Request, res: Response, {params} : {params: {uuid: string}}
 ) {
   try {
     const { uuid } = await params; // ✅ ไม่ต้อง await

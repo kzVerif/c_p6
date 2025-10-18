@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(
   request: Request,
+  res: Response,
   { params }: { params: { uuid: string } }
 ) {
   const { uuid } = await params;
