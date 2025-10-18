@@ -2,6 +2,7 @@
 import { revalidatePath } from "next/cache";
 export async function GET(
   request: Request,
+  res:Response,
   { params }: { params: { uuid: string } }
 ) {
   try {
