@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function DELETE(
   req: Request,
+  res: Response,
   context: { params: { uuid: string; env_uuid: string } }
 ) {
   try {
